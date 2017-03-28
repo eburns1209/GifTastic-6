@@ -3,11 +3,12 @@
 
       // displayMovieInfo function re-renders the HTML to display the appropriate content
       // function displayAnimalInfo()
-     function alertAnimalName(){
-      var animalName = $(this).attr("data-animal");
+     // function alertAnimalName(){
+      $(document).ready(function(){
+      var animalName = $(this).data("data-animal");
       var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animalName + "&api_key=dc6zaTOxFJmzC&limit=10";
 
-      alert(animalName);
+      // alert(animalName);
 
       $.ajax({
         url: queryURL, 
@@ -15,12 +16,12 @@
       }).done(function(response){
         console.log(response);
 
-        for(var i =0; i<response.data.length;i++){
-         var searchDiv = $('<div class="search-item">');
+        // for(var i =0; i<response.data.length;i++){
+        //  var searchDiv = $('<div class="search-item">');
 
-        var rating = response.data[i].rating;
-        var p = $('<p>').text("Rating: " + rating);
-        }
+        // var rating = response.data[i].rating;
+        // var p = $('<p>').text("Rating: " + rating);
+        // }
 
         // var animalDiv = $('<div class="animal">');
 
@@ -30,7 +31,7 @@
 
         // alert(rating);
       })
-     }
+    })
 
        
         
@@ -74,9 +75,9 @@
       });
 
       // Adding click event listeners to all elements with a class of "animal"
-    $(document).on("click", ".animal", alertAnimalName);
+    $(document).on("click", ".animal");
      console.log('test');
-     $("#GifArea").append(alertAnimalName);
+     // $("#GifArea").append(animalName);
       // Calling the renderButtons function to display the intial buttons
      
      		
