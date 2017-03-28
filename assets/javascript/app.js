@@ -3,23 +3,40 @@
 
       // displayMovieInfo function re-renders the HTML to display the appropriate content
       // function displayAnimalInfo()
-      $(document).on("click", function(){
+     function alertAnimalName(){
+      var animalName = $(this).attr("data-animal");
+      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animalName + "&api_key=dc6zaTOxFJmzC&limit=10";
 
-        var type = $(this).data('type');
-        var queryURL = "http://api.giphy.com/v1/stickers/random?q=" + type + "cat&api_key=dc6zaTOxFJmzC&limit=10";
+      alert(animalName);
 
-        // Creates AJAX call for the specific movie button being clicked
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).done(function(response) {
-          console.log(response);
-          
-        });
+      $.ajax({
+        url: queryURL, 
+        method: "GET"
+      }).done(function(response){
+        console.log(response);
 
+        for(var i =0; i<response.data.length;i++){
+         var searchDiv = $('<div class="search-item">');
+
+        var rating = response.data[i].rating;
+        var p = $('<p>').text("Rating: " + rating);
+        }
+
+        // var animalDiv = $('<div class="animal">');
+
+        // var rating = response.rated;
+
+        // animalDiv.append(rating);
+
+        // alert(rating);
       })
+     }
+
+       
+        
 
       // Function for displaying movie data
+      
       function renderButtons() {
 
         // Deletes the movies prior to adding new movies
@@ -43,8 +60,9 @@
       }
 
       // This function handles events where the add movie button is clicked
-      $("#add-animal").on("click", function() {
+      $("#add-animal").on("click", function(event) {
         
+        event.preventDefault();
         // This line of code will grab the input from the textbox
         var animal = $("#animal-input").val().trim();
 
@@ -56,24 +74,13 @@
       });
 
       // Adding click event listeners to all elements with a class of "animal"
-    function pictures(){
-      $(".animal").on("click", function(){
-      	var user = $(this);
-      	var user_pick = user.data("animal");
-
-      	$("#GifArea").append(user_pick);
-      });
-  	}
-      console.log('test');
+    $(document).on("click", ".animal", alertAnimalName);
+     console.log('test');
+     $("#GifArea").append(alertAnimalName);
       // Calling the renderButtons function to display the intial buttons
      
-      pictures();
-	  
-
-		var animal = $("#animal-input").val().trim();
-
+     		
 		
 renderButtons();
-
 
 
