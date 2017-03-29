@@ -1,37 +1,40 @@
+ $(document).ready(function(){
  // Initial array of movies
       var animals = ["fish"];
 
       // displayMovieInfo function re-renders the HTML to display the appropriate content
-      // function displayAnimalInfo()
+      function displayAnimalInfo(){
      // function alertAnimalName(){
-      $(document).ready(function(){
-      var animalName = $(this).data("data-animal");
-      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animalName + "&api_key=dc6zaTOxFJmzC&limit=10";
+     
+        var animalName = $(this).data("data-animal");
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animalName + "&api_key=dc6zaTOxFJmzC&limit=10";
 
-      // alert(animalName);
+        // alert(animalName);
 
-      $.ajax({
-        url: queryURL, 
-        method: "GET"
-      }).done(function(response){
-        console.log(response);
+        $.ajax({
+          url: queryURL, 
+          method: "GET"
+        }).done(function(response){
+          console.log(response);
+          
+          for(var i =0; i<response.data.length;i++){
+            var searchDiv = $('<div class="search-item">');
 
-        // for(var i =0; i<response.data.length;i++){
-        //  var searchDiv = $('<div class="search-item">');
+            var rating = response.data[i].rating;
+            var p = $('<p>').text("Rating: " + rating);
 
-        // var rating = response.data[i].rating;
-        // var p = $('<p>').text("Rating: " + rating);
-        // }
+            var img = response.data[i].images.fixed_height_still.url     // for still
+            // response.data[i].images.fixed_hight.url  // for animated
+            // e
+            // var img = response.data[i].images.url;
+            // // img.addClass('searchImage');
 
-        // var animalDiv = $('<div class="animal">');
-
-        // var rating = response.rated;
-
-        // animalDiv.append(rating);
-
-        // alert(rating);
-      })
-    })
+            
+            searchDiv.append(p);
+            $("#GifArea").append(searchDiv);
+          }
+        })
+      }
 
        
         
@@ -75,7 +78,7 @@
       });
 
       // Adding click event listeners to all elements with a class of "animal"
-    $(document).on("click", ".animal");
+    $(document).on("click", ".animal", displayAnimalInfo);
      console.log('test');
      // $("#GifArea").append(animalName);
       // Calling the renderButtons function to display the intial buttons
@@ -83,5 +86,5 @@
      		
 		
 renderButtons();
-
+ })
 
