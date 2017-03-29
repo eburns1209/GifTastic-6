@@ -1,12 +1,12 @@
  $(document).ready(function(){
  // Initial array of movies
-      var animals = ["fish"];
+      var animals = [];
 
       // displayMovieInfo function re-renders the HTML to display the appropriate content
       function displayAnimalInfo(){
      // function alertAnimalName(){
      
-        var animalName = $(this).data("data-animal");
+        var animalName = $(this).data("animal");
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animalName + "&api_key=dc6zaTOxFJmzC&limit=10";
 
         // alert(animalName);
@@ -17,26 +17,43 @@
         }).done(function(response){
           console.log(response);
           
+          $("#GifArea").html("");
+
           for(var i =0; i<response.data.length;i++){
             var searchDiv = $('<div class="search-item">');
 
             var rating = response.data[i].rating;
             var p = $('<p>').text("Rating: " + rating);
 
-            var img = response.data[i].images.fixed_height_still.url     // for still
-            // response.data[i].images.fixed_hight.url  // for animated
+           
+            var still = response.data[i].images.fixed_height_still.url     // for still
+            var animated = response.data[i].images.fixed_height.url  // for animated=
             // e
             // var img = response.data[i].images.url;
             // // img.addClass('searchImage');
-
-            
+            var img = $("<img>");
+            img.attr("src", still);
+            // img.attr("data-still", still);
+            img.attr("src", animated);
+            // img.attr("data-state", 'still');
+            img.addClass("searchImage");
             searchDiv.append(p);
+            searchDiv.append(img);
             $("#GifArea").append(searchDiv);
           }
         })
       }
-
-       
+      
+      $(document).on("click", "searchImage", function(){
+        var state = $(this).attr("searchImage");
+          if(state == 'still'){
+            $(this).attr('src', $(this).data('animated'));
+            // $(this).attr('searchImage', 'animated');
+          }else{
+            $(this).attr('src', $(this).data('still'));
+            // $(this).attr('data-state', 'still');
+          }
+      })//closed on click for pause
         
 
       // Function for displaying movie data
