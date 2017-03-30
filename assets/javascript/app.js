@@ -44,18 +44,19 @@
         })
       }
       
-      $(document).on("click", "animal", function(){
-        var state = $(this).data("searchImage");
+     
+      // $(document).on("click", "animal", function(){
+      //   var state = $(this).data("searchImage");
           
-          if(state == 'animated'){
-            console.log(state);
-            $(this).attr('data-state', $(this).attr('still'));
+      //     if(state == 'animated'){
+      //       console.log(state);
+      //       $(this).attr('data-state', $(this).attr('still'));
           //   $(this).attr('data-state', 'still');
           // }else{
           //   $(this).attr('src', $(this).data('data-animated'));
           //   $(this).attr('data-animated', 'animated');
-          }
-      })//closed on click for pause
+      //     }
+      // })//closed on click for pause
       
       // Function for displaying movie data
       
