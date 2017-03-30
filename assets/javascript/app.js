@@ -33,9 +33,9 @@
             // // img.addClass('searchImage');
             var img = $("<img>");
             img.attr("src", still);
-            // img.attr("data-still", still);
+            img.attr("data-still", still);
             img.attr("src", animated);
-            // img.attr("data-state", 'still');
+            img.attr("data-state", 'still');
             img.addClass("searchImage");
             searchDiv.append(p);
             searchDiv.append(img);
@@ -44,18 +44,19 @@
         })
       }
       
-      $(document).on("click", "searchImage", function(){
-        var state = $(this).attr("searchImage");
-          if(state == 'still'){
-            $(this).attr('src', $(this).data('animated'));
-            // $(this).attr('searchImage', 'animated');
-          }else{
-            $(this).attr('src', $(this).data('still'));
-            // $(this).attr('data-state', 'still');
+      $(document).on("click", "animal", function(){
+        var state = $(this).data("searchImage");
+          
+          if(state == 'animated'){
+            console.log(state);
+            $(this).attr('data-state', $(this).attr('still'));
+          //   $(this).attr('data-state', 'still');
+          // }else{
+          //   $(this).attr('src', $(this).data('data-animated'));
+          //   $(this).attr('data-animated', 'animated');
           }
       })//closed on click for pause
-        
-
+      
       // Function for displaying movie data
       
       function renderButtons() {
