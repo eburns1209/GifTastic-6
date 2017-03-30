@@ -35,28 +35,28 @@
             img.attr("src", still);
             img.attr("data-still", still);
             img.attr("src", animated);
-            img.attr("data-state", 'still');
+            img.attr("data-state", 'animated');
+            img.attr("data-animated", animated);
             img.addClass("searchImage");
             searchDiv.append(p);
             searchDiv.append(img);
             $("#GifArea").append(searchDiv);
-          }
-        })
-      }
+          }//end for loop
+        })//done function
+        }//close displayAnimalInfo
       
      
-      // $(document).on("click", "animal", function(){
-      //   var state = $(this).data("searchImage");
-          
-      //     if(state == 'animated'){
-      //       console.log(state);
-      //       $(this).attr('data-state', $(this).attr('still'));
-          //   $(this).attr('data-state', 'still');
-          // }else{
-          //   $(this).attr('src', $(this).data('data-animated'));
-          //   $(this).attr('data-animated', 'animated');
-      //     }
-      // })//closed on click for pause
+      $(document).on("click", ".searchImage", function(){
+        var state = $(this).data("state");
+
+          if(state === 'animated'){
+            $(this).attr('src', $(this).data('still'));
+            $(this).data('state', 'still');
+          }else{
+            $(this).attr('src', $(this).data('animated'));
+            $(this).data('state', 'animated');
+          }
+      })//closed on click for pause
       
       // Function for displaying movie data
       
