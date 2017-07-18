@@ -1,1 +1,2 @@
 # GifTastic-6
+In this assignment, we were to utilize the GIPHY API to make a dynamic web page that populates with gifs of our choice. To finish this task, I called the GIPHY API and used the JavaScript and jQuery to change the HTML of my site.
